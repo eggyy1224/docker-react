@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run eggyy1224/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-egg"
+  env: "DockerReactEgg-env"
+  bucket_name: "elasticbeanstalk-us-east-1-638139713801"
+  bucket_path: "docker-react-egg"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
